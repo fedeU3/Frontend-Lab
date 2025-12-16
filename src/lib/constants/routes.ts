@@ -35,4 +35,8 @@ export const ROUTES = {
     path: '/pedidos/create',
     title: 'Crear Pedido',
   },
+  theLab: {
+    path: '/the-lab',
+    title: 'The Lab',
+  }
 }

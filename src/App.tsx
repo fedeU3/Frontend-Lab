@@ -9,6 +9,7 @@ import Users from './pages/Usuarios';
 import Logout from './pages/Logout';
 import MyOrders from './pages/MisPedidos';
 import CreateOrder from './pages/CrearPedidos';
+import TheLab from './pages/TheLab';
 import { ROUTES } from './lib/constants/routes';
 import theme from './theme'; 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path={ROUTES.miembros.path} element={<Miembros />} />
         <Route path={ROUTES.MisPedidos.path} element={<MyOrders />} />
         <Route path={ROUTES.createOrders.path} element={<CreateOrder />} />
+        <Route path={ROUTES.theLab.path} element={<TheLab />} />
       </Routes>
     </ThemeProvider>
   );

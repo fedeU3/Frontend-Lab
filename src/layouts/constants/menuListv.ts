@@ -8,6 +8,7 @@ export const menuList: MenuList = {
     { label: 'Books', path: '/books', Icon: MenuBook, activeOnly: true },
     { label: 'Usuario', path: '/usuario', Icon: MenuBook, activeOnly: true },
     { label: 'MisPedidos', path: '/MisPedidos', Icon: MenuBook, activeOnly: true },
+    { label: 'The Lab', path: '/the-lab', Icon: MenuBook },
   ],
   bottom: [
     { label: 'Log Out', path: '/logout', Icon: Logout },
