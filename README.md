@@ -1,50 +1,74 @@
-# React + TypeScript + Vite
+# Frontend Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Entorno especializado para probar y validar las últimas versiones de dependencias frontend antes de integrarlas en proyectos de producción.
 
-Currently, two official plugins are available:
+## Objetivo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este repositorio funciona como un laboratorio de pruebas: permite experimentar con versiones bleeding-edge de librerías, verificar compatibilidades y correr tests de integración (E2E con Cypress) sobre la combinación de dependencias actualizada.
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+| Categoría | Dependencia | Versión |
+|---|---|---|
+| Framework | React | ^19 |
+| Build | Vite | ^8 |
+| Lenguaje | TypeScript | ^6 |
+| UI | MUI v9 + Emotion | ^9 |
+| Data fetching | TanStack Query | ^5 |
+| Formularios | React Hook Form | ^7 |
+| Routing | React Router | ^7 |
+| HTTP | Axios | ^1 |
+| Fechas | Day.js | ^1 |
+| Testing E2E | Cypress | ^15 |
+| Linting | ESLint + typescript-eslint | ^10 / ^8 |
 
-- Configure the top-level `parserOptions` property like this:
+## Comandos
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+# Instalar dependencias
+npm install
+
+# Levantar servidor de desarrollo
+npm run dev
+
+# Compilar para producción
+npm run build
+
+# Vista previa del build
+npm run preview
+
+# Linting
+npm run lint
+
+# Cypress (UI interactiva)
+npx cypress open
+
+# Cypress (headless)
+npx cypress run
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Estructura
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+src/
+├── components/   # Componentes reutilizables
+├── contexts/     # React Contexts
+├── layouts/      # Layouts de página
+├── lib/          # Utilidades y configuración de librerías
+├── pages/        # Vistas por ruta
+├── providers/    # Providers globales (Query, Theme, Router)
+└── theme.ts      # Configuración de tema MUI
+
+cypress/
+├── e2e/          # Tests E2E
+├── fixtures/     # Datos de prueba
+└── support/      # Comandos y configuración de Cypress
+```
+
+## Flujo de trabajo
+
+1. Actualizar versiones en `package.json`
+2. Correr `npm install` y resolver conflictos de tipos o APIs rotas
+3. Verificar que la app levanta correctamente con `npm run dev`
+4. Ejecutar la suite E2E con `npx cypress run`
+5. Si todo pasa, las versiones están validadas para usar en producción
