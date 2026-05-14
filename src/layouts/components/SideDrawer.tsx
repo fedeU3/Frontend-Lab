@@ -6,13 +6,15 @@ import { MenuList } from '../types/MenuList';
 
 type SideDrawerProps = {
   menuList: MenuList;
+  open: boolean;
+  onToggle: (open: boolean) => void;
 }
 
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
-  backgroundColor: '#080808',
+  backgroundColor: theme.palette.background.default,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -22,7 +24,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
-  backgroundColor: '#080808',
+  backgroundColor: theme.palette.background.default,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -59,16 +61,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const SideDrawer: React.FC<SideDrawerProps> = ({
-  menuList,
-}) => {
-  const [expanded, setExpanded] = React.useState(false);
-  const toggleDrawer = (newExpanded: boolean) => () => {
-    setExpanded(newExpanded);
+const SideDrawer: React.FC<SideDrawerProps> = ({ menuList, open, onToggle }) => {
+  const toggleDrawer = (newOpen: boolean) => () => {
+    onToggle(newOpen);
   };
+
   return (
-    <Drawer variant='permanent' open={expanded} onMouseEnter={toggleDrawer(true)} onMouseLeave={toggleDrawer(false)}>
-      <DrawerList menuList={menuList} expanded={expanded} toggleDrawer={toggleDrawer}/>
+    <Drawer
+      variant='permanent'
+      open={open}
+      onMouseEnter={toggleDrawer(true)}
+      onMouseLeave={toggleDrawer(false)}
+    >
+      <DrawerList menuList={menuList} expanded={open} toggleDrawer={toggleDrawer} />
     </Drawer>
   )
 }

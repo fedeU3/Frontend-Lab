@@ -15,64 +15,37 @@ const Login: React.FC<LoginProps> = () => {
     defaultValues: {
       userID: '',
       password: '',
-      rememberMe: false, // Nuevo campo para "Recuérdame"
+      rememberMe: false,
     }
   });
 
   return (
     <Box
-      sx={{
-        background: "linear-gradient(to bottom, #080808, #2C3E50)",
-        backgroundColor: '#080808',
+      sx={(theme) => ({
+        background: `linear-gradient(to bottom, ${theme.palette.background.default}, ${theme.palette.background.paper})`,
         minHeight: '100vh',
-        color: '#B0BEC5',
+        color: 'text.primary',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         padding: '2rem',
-      }}
+      })}
     >
-      <Card
-        sx={{
-          backgroundColor: '#2C3E50',
-          width: '25rem',
-          padding: '2rem',
-          color: "#B0BEC5",
-          borderRadius: '1rem',
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
-        }}
-      >
+      <Card sx={{ width: '25rem', padding: '2rem' }}>
         <CardContent>
-          <Typography variant='h4' align='center'  gutterBottom>
+          <Typography variant='h4' align='center' gutterBottom>
             Login
           </Typography>
           <Box
             component={'form'}
             onSubmit={handleSubmit(login)}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.5rem',
-            }}
+            sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
           >
             <TextField
               label='Email'
               variant='outlined'
               fullWidth
               {...register('userID', { required: true })}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
             <TextField
               label='Password'
@@ -80,65 +53,25 @@ const Login: React.FC<LoginProps> = () => {
               type='password'
               fullWidth
               {...register('password', { required: true })}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
 
-            {/* Checkbox para "Recuérdame" */}
             <FormControlLabel
-              control={
-                <Checkbox
-                  {...register('rememberMe')}
-                  sx={{
-                    color: '#FF7043',
-                    '&.Mui-checked': {
-                      color: '#FF7043',
-                    },
-                  }}
-                />
-              }
+              control={<Checkbox {...register('rememberMe')} />}
               label="Recuérdame"
-              sx={{ color: '#B0BEC5' }}
             />
 
-            {/* Botón de Login */}
-            <Button
-              variant='contained'
-              type='submit'
-              sx={{
-                backgroundColor: '#FF7043',
-                color: '#080808',
-                fontWeight: 'bold',
-                '&:hover': {
-                  backgroundColor: '#E64A19',
-                },
-              }}
-            >
+            <Button variant='contained' type='submit' sx={{ fontWeight: 'bold' }}>
               Login
             </Button>
 
-            {/* Enlace para "¿Olvidaste tu contraseña?" */}
             <Typography
               variant='body2'
               align='center'
               sx={{
-                color: '#FF7043',
+                color: 'primary.main',
                 textDecoration: 'underline',
                 cursor: 'pointer',
-                '&:hover': {
-                  color: '#E64A19',
-                },
+                '&:hover': { color: 'primary.dark' },
               }}
             >
               ¿Olvidaste tu contraseña?

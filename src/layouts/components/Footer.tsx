@@ -6,7 +6,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const Footer = () => {
   return (
-    <Box sx={{ backgroundColor: "#2C3E50", textAlign: "center", py: 4, mt: 4 }}>
+    <Box sx={{ backgroundColor: 'background.paper', textAlign: "center", py: 4, mt: 4 }}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={4}>
           {/*<Box component="img" src="/LogoChocho.svg" alt="Producciones" sx={{ height: 110 }} />

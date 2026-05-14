@@ -38,5 +38,17 @@ export const ROUTES = {
   theLab: {
     path: '/the-lab',
     title: 'The Lab',
-  }
+  },
+  theLab2: {
+    path: '/the-lab-2',
+    title: 'The Lab 2',
+  },
+  theLab3: {
+    path: '/the-lab-3',
+    title: 'The Lab 3',
+  },
+  theLab4: {
+    path: '/the-lab-4',
+    title: 'The Lab 4',
+  },
 }

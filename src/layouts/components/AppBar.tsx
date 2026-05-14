@@ -8,73 +8,63 @@ type NavBarProps = {
 };
 
 const NavBar: React.FC<NavBarProps> = ({ goTo, currentPage }) => {
-  const { user } = useAuthContext(); // Obtener la información del usuario
+  const { user } = useAuthContext();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: '#2C3E50', zIndex: (theme) => theme.zIndex.drawer + 1  }}>
-        <Toolbar sx={{ justifyContent: 'flex start' }}>
-          {/* Contenedor para el logo y el texto */}
+      <AppBar
+        position="fixed"
+        sx={{ backgroundColor: 'background.paper', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <Toolbar>
           <Box display="flex" alignItems="center">
-            {/* Logo */}
-            {/*<Box component="img" src="/LogoFondo.svg" alt="Logo Almacén" sx={{ height: 40, mr: 2 }} />*/}
-            {/* Texto de currentPage */}
             <Typography variant="h6" component="div">
               {currentPage}
             </Typography>
           </Box>
 
-            <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'flex-start',
-              ml: 5,      // 👈 margen izquierdo entre el título y los botones
-              gap: 2,     // opcional: espacio entre botones
-            }}
-          ></Box>
+          <Box sx={{ flexGrow: 1 }} />
 
-          {/* Botones a la derecha */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             {user ? (
               <>
                 <Button
-                onClick={goTo('/equipo')}
-                  variant="contained"
-                  sx={{ backgroundColor: '#B0BEC5', color: '#000', border: '1px solid #000',fontSize: '0.9rem', padding: '2px 4px', minWidth: 'auto'}}
+                  onClick={goTo('/equipo')}
+                  variant="outlined"
+                  size="small"
                 >
                   Alquilar Equipo
                 </Button>
                 <Button
                   onClick={goTo('/')}
-                  sx={{ color: '#B0BEC5', fontSize: '0.9rem', padding: '2x 4px'}}
+                  variant="text"
+                  size="small"
+                  sx={{ color: 'text.primary' }}
                 >
                   Home
                 </Button>
-                  {/* 
-                    <Button
-                        onClick={goTo('/miembros')}
-                        sx={{ color: '#B0BEC5',fontSize: '0.6rem', padding: '2x zpx', minWidth: 'auto'}}
-                      >
-                        Miembros del Equipo
-                    </>
-                  */}                
                 <Button
                   onClick={goTo('/clientes')}
-                  sx={{ color: '#B0BEC5',fontSize: '0.9em', padding: '2x 4px', minWidth: 'auto'}}
+                  variant="text"
+                  size="small"
+                  sx={{ color: 'text.primary' }}
                 >
                   Clientes
                 </Button>
                 <Button
                   onClick={goTo('/pedidos')}
-                  sx={{ color: '#B0BEC5',fontSize: '0.9rem', padding: '2x 4px', minWidth: 'auto' }}
+                  variant="text"
+                  size="small"
+                  sx={{ color: 'text.primary' }}
                 >
                   Pedidos
                 </Button>
                 {user.esAdmin && (
                   <Button
                     onClick={goTo('/MisPedidos')}
-                    sx={{ color: '#B0BEC5',fontSize: '0.9rem', padding: '2x 4px', minWidth: 'auto'}}
+                    variant="text"
+                    size="small"
+                    sx={{ color: 'text.primary' }}
                   >
                     Mis pedidos
                   </Button>
@@ -82,7 +72,7 @@ const NavBar: React.FC<NavBarProps> = ({ goTo, currentPage }) => {
                 <Button
                   onClick={goTo('/usuario')}
                   variant="contained"
-                  sx={{ backgroundColor: '#FF7043',fontSize: '0.9rem', padding: '2x 4px', minWidth: 'auto', color: '#080808' }}
+                  size="small"
                 >
                   Perfil
                 </Button>
@@ -90,23 +80,23 @@ const NavBar: React.FC<NavBarProps> = ({ goTo, currentPage }) => {
             ) : (
               <>
                 <Button
-                onClick={goTo('/equipo')}
-                  variant="contained"
-                  sx={{ backgroundColor: '#B0BEC5', color: '#000', border: '1px solid #000', mr: 1 }}
+                  onClick={goTo('/equipo')}
+                  variant="outlined"
+                  size="small"
                 >
                   Alquilar Equipo
                 </Button>
                 <Button
                   onClick={goTo('/login')}
-                  color="inherit"
-                  sx={{ backgroundColor: '#FF7043', border: '1px solid #080808', color: '#080808' }}
+                  variant="contained"
+                  size="small"
                 >
                   Login
                 </Button>
                 <Button
                   onClick={goTo('/signup')}
                   variant="outlined"
-                  sx={{ ml: 1, backgroundColor: '#080808', borderColor: '#FF7043', color: '#FF7043', border: '1px solid #FF7043' }}
+                  size="small"
                 >
                   Sign up
                 </Button>

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Container,
   Grid,
   Card,
   CardContent,
   CardMedia,
   Typography,
-  IconButton,
   Box,
   TextField,
 } from "@mui/material";
@@ -28,24 +26,23 @@ const fetchCurrentUser = async (): Promise<IUser> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       fetch('/api/usuarioActual')
-      .then(response => response.json())
-      .then(data => {
-        resolve(data);
-      })
-      .catch(error => {
-        console.error('Error al obtener el usuario:', error);
-      resolve({
-        id: 1,
-        avatar: "PlaceholderProfile.jpg",
-        name: "Usuario Ejemplo",
-        position: "Puesto de ejemplo",
-        adress: "Direccion de ejemplo",
-        bio: "Esta es una biografía de ejemplo.",
-        phone: "123-456-7890",
-        email: "usuario@example.com",
-        equipment: ["Cámara", "Micrófono", "Trípode"],
-      });
-      });
+        .then(response => response.json())
+        .then(data => {
+          resolve(data);
+        })
+        .catch(() => {
+          resolve({
+            id: 1,
+            avatar: "PlaceholderProfile.jpg",
+            name: "Usuario Ejemplo",
+            position: "Puesto de ejemplo",
+            adress: "Direccion de ejemplo",
+            bio: "Esta es una biografía de ejemplo.",
+            phone: "123-456-7890",
+            email: "usuario@example.com",
+            equipment: ["Cámara", "Micrófono", "Trípode"],
+          });
+        });
     }, 1000);
   });
 };
@@ -64,7 +61,11 @@ const Usuario = () => {
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState<IUser | null>(null);
-  const [showForm, setShowForm] = useState(false); 
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => prev ? { ...prev, [name]: value } : prev);
+  };
 
   useEffect(() => {
     const loadUser = async () => {
@@ -83,9 +84,9 @@ const Usuario = () => {
   if (!user) return <p>Cargando...</p>;
 
   return (
-    <Box sx={{minHeight: "100vh", color: "#B0BEC5"}}>
+    <Box sx={{ minHeight: "100vh" }}>
       <Container sx={{ py: 2 }}>
-        <Card sx={{ backgroundColor: "#151E26", p: 2, borderRadius: 2 }}>
+        <Card sx={{ backgroundColor: 'background.elevated', p: 2 }}>
           <Grid container spacing={2} alignItems="center">
             <Grid item>
               <CardMedia
@@ -142,7 +143,7 @@ const Usuario = () => {
               {editing ? (
                 <TextField
                   fullWidth
-                  label="Direcion"
+                  label="Direccion"
                   name="adress"
                   value={formData?.adress || ''}
                   onChange={handleChange}
@@ -189,9 +190,7 @@ const Usuario = () => {
         </Card>
       </Container>
 
-
-        <Grid container spacing={2}>
-        </Grid>
+      <Grid container spacing={2} />
     </Box>
   );
 };

@@ -18,24 +18,8 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
   };
 
   return (
-    <Box
-      sx={{
-        background: " #080808",
-        backgroundColor: '#080808',
-        color: '#B0BEC5',
-        padding: '2rem',
-        borderRadius: '1rem',
-      }}
-    >
-      <Card
-        sx={{
-          backgroundColor: '#2C3E50',
-          padding: '2rem',
-          color: "#B0BEC5",
-          borderRadius: '1rem',
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)',
-        }}
-      >
+    <Box sx={{ padding: '2rem', borderRadius: '1rem' }}>
+      <Card sx={{ padding: '2rem' }}>
         <CardContent>
           <Typography variant='h5' align='center' gutterBottom>
             Agregar Equipo
@@ -43,11 +27,7 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
           <Box
             component={'form'}
             onSubmit={handleSubmit}
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.5rem',
-            }}
+            sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
           >
             <TextField
               label='Nombre del Equipo'
@@ -55,19 +35,6 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
               fullWidth
               value={equipo}
               onChange={(e) => setEquipo(e.target.value)}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
             <TextField
               label='Categoría'
@@ -75,19 +42,6 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
               fullWidth
               value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
             <TextField
               label='Precio por hora'
@@ -95,19 +49,6 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
               fullWidth
               value={precio}
               onChange={(e) => setPrecio(e.target.value)}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
             <TextField
               label='Marca y modelo'
@@ -115,48 +56,14 @@ const FormularioEquipo = ({ onClose, onAdd }: IFormProps) => {
               fullWidth
               value={marcaModelo}
               onChange={(e) => setMarcaModelo(e.target.value)}
-              sx={{
-                backgroundColor: '#151E26',
-                borderRadius: '0.5rem',
-                '& .MuiOutlinedInput-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiInputLabel-root': {
-                  color: '#B0BEC5',
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#FF7043',
-                },
-              }}
             />
-            <Button
-              variant='contained'
-              fullWidth
-              sx={{
-                backgroundColor: '#FF7043',
-                color: '#080808',
-                fontWeight: 'bold',
-                '&:hover': {
-                  backgroundColor: '#E64A19',
-                },
-              }}
-              onClick={handleSubmit}
-            >
+            <Button variant='contained' fullWidth sx={{ fontWeight: 'bold' }} onClick={handleSubmit}>
               Guardar
             </Button>
             <Button
-              variant='contained'
+              variant='outlined'
               fullWidth
-              sx={{
-                backgroundColor: '#2C3E50',
-                color: '#FF7043',
-                fontWeight: 'bold',
-                border: '1px solid #FF7043',
-                '&:hover': {
-                  backgroundColor: '#E64A19',
-                  color: '#2C3E50',
-                },
-              }}
+              sx={{ fontWeight: 'bold' }}
               onClick={onClose}
             >
               Cancelar

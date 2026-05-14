@@ -7,6 +7,8 @@ import { menuList } from '../constants/menuList';
 import { useNavigate, useLocation } from 'react-router';
 import { useAuthContext } from '../../lib/hooks/contextHooks/useAuthContext';
 
+const DRAWER_OPEN_WIDTH = 240;
+
 type AppLayoutProps = {
   children: React.ReactNode;
   currentPage: string;
@@ -17,7 +19,8 @@ type AppLayoutProps = {
 const AppLayout: React.FC<AppLayoutProps> = ({ children, currentPage, isAdmin, isActive }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAuthContext(); // Obtener la información del usuario
+  const { user } = useAuthContext();
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const goTo = (url: string) => () => {
     navigate(url);
@@ -42,10 +45,22 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children, currentPage, isAdmin, i
   return (
     <Box id="layout">
       <NavBar currentPage={currentPage} goTo={goTo} />
-      <SideDrawer menuList={menuItems} />
-      <Box sx={{ paddingTop: '65px', paddingLeft: '70px' }}>
+      <SideDrawer menuList={menuItems} open={drawerOpen} onToggle={setDrawerOpen} />
+      <Box
+        sx={(theme) => ({
+          paddingTop: '65px',
+          paddingLeft: drawerOpen
+            ? `${DRAWER_OPEN_WIDTH}px`
+            : `calc(${theme.spacing(8)} + 1px)`,
+          transition: theme.transitions.create('padding-left', {
+            easing: theme.transitions.easing.sharp,
+            duration: drawerOpen
+              ? theme.transitions.duration.enteringScreen
+              : theme.transitions.duration.leavingScreen,
+          }),
+        })}
+      >
         {children}
-        {/* Mostrar el footer solo si no es la página de login o logout */}
         {!['/login', '/logout'].includes(location.pathname) && <Footer />}
       </Box>
     </Box>
