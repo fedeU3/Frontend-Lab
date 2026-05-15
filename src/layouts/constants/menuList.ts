@@ -12,6 +12,12 @@ export const menuList: MenuList = {
     { label: 'The Lab 2', path: '/the-lab-2', Icon: Science },
     { label: 'The Lab 3', path: '/the-lab-3', Icon: Biotech },
     { label: 'The Lab 4', path: '/the-lab-4', Icon: Rocket },
+    { label: 'The Lab 5', path: '/the-lab-5', Icon: Rocket },
+    { label: 'The Lab 6', path: '/the-lab-6', Icon: Rocket },
+    { label: 'The Lab 7', path: '/the-lab-7', Icon: Rocket },
+    { label: 'The Lab 8', path: '/the-lab-8', Icon: Rocket },
+    { label: 'The Lab 9', path: '/the-lab-9', Icon: Rocket },
+    { label: 'The Lab 10', path: '/the-lab-10', Icon: Rocket },
   ],
   bottom: [
     { label: 'Log Out', path: '/logout', Icon: Logout },
